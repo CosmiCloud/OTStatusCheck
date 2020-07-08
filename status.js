@@ -2,6 +2,8 @@ const { exec } = require("child_process");
 require('dotenv').config();
 var https = require("https");
 var querystring = require('querystring');
+var nodeCheck = "sudo docker ps --quiet"
+var statPull = "sudo docker stats --no-stream otnode"
 
 function PushNotification(PushTitle, PushText)
     {
@@ -41,8 +43,18 @@ function PushNotification(PushTitle, PushText)
      });
     }
 
-exec('uptime', (error, uptime, stderr) => {
-  exec('free', (error, free, stderr) => {
-      PushNotification(process.env.NODENAME + " status check.",uptime+free);
-  });
-});
+    exec(nodeCheck, (error, found, stderr) => {
+      if(found){
+        exec(statPull, (error, stats, stderr) => {
+          if(error){
+            PushNotification(process.env.NODENAME + " status check failed.","Failed to pull stats.");
+          }else{
+            PushNotification(process.env.NODENAME + " status check.",stats);
+          }
+        });
+      }else if(error){
+          PushNotification(process.env.NODENAME + " status check failed.","Failed to get running state.");
+      }else{
+        PushNotification(process.env.NODENAME + " status check.","Container is not running.");
+      }
+    });
