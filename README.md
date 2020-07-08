@@ -1,10 +1,6 @@
 # OTStatusCheck
 This will help you set up a cron job that triggers a script everyday at 8am that will notify you of current system load and memory usage. You will receive a Push notification whenever ever the script completes or fails. If the script does fail, the notification will include log statements to identify the issue.
 <br><br>
-Install the 'Notify My Device' app from the app store and install it onto your mobile device.
-<br><br>
-Navigate to https://www.notifymydevice.com/ and create an account. Go to 'My applications' and create an application. Copy the API key and save it for later.
-<br><br>
 Note: Adjust the cronjob listed below if you do not want notified with system information every day.
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
