@@ -31,7 +31,7 @@ Add a Cron job to the bottom of your crontab to trigger the script. Test running
 <li>Edit and Paste the command below to the end of your crontab</li>
 </ol>
 
-0 8 * * * root cd ~/path/to/my/script && node status.js
+0 12 * * * root cd ~/path/to/my/script && node status.js
 
 
 
